@@ -1,0 +1,20 @@
+ARG REGISTRY
+FROM $REGISTRY/node:16.13.1-alpine AS builder-image
+
+LABEL maintainer="Chloe <chloechen@mobagel.com>"
+
+ARG AIRTABLE_KEY
+ENV HOME=/root
+
+RUN \
+  apk --update add --no-cache make git && \
+  rm -rf /var/cache/apk/*
+
+COPY package*.json /tmp/
+
+RUN cd /tmp && yarn install
+
+RUN mkdir -p /root && \
+  cp -a /tmp/node_modules /root
+
+WORKDIR /root

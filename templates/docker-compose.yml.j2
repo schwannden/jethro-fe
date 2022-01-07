@@ -1,0 +1,23 @@
+version: '3.8'
+networks:
+  8ndpoint:
+    external: true
+services:
+  fridge-fe:
+    container_name: ${SERVICE_NAME}
+    image: harbor.mobagel.com/core-tech-release/nginx:1.19.2
+    networks:
+      - ${NETWORK_NAME}
+    volumes:
+      - "${GITROOT}/dist:/usr/share/nginx/html"
+      - "${GITROOT}/docker/nginx/templates:/etc/nginx/templates/"
+    labels:
+      - "traefik.http.routers.${SERVICE_NAME}.rule=Host(`${HOSTNAME}`)"
+      - "traefik.http.routers.${SERVICE_NAME}.tls=true"
+{% if environ('WITH_EFK') == 'true' %}
+    logging:
+      driver: fluentd
+      options:
+        tag: ${SERVICE_NAME}
+{% endif %}
+
