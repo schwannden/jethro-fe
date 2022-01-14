@@ -5,7 +5,7 @@ import ProCard from '@ant-design/pro-card';
 import { useIntl } from 'umi';
 import { List, Space } from 'antd';
 
-const CollectorPage: React.FC = () => {
+const OverviewPage: React.FC = () => {
   const [services, setServices] = useState<API.ServiceSummary[]>([]);
   const { formatMessage } = useIntl();
   const [] = useState<API.ServiceSummary[]>([]);
@@ -38,12 +38,14 @@ const CollectorPage: React.FC = () => {
             case 'friday-prayer':
               return (
                 <ProCard
+                  key={`card-${service.name}`}
                   title={formatMessage({ id: `service.name.${service.name}` })}
                   subTitle={service.date}
                   type={'inner'}
                   extra={
                     <List<API.Servant>
                       dataSource={service.servants}
+                      rowKey={'name'}
                       renderItem={(servant) => (
                         <List.Item>
                           {formatMessage({ id: `servant.title.${servant.title}` })}
@@ -57,16 +59,17 @@ const CollectorPage: React.FC = () => {
             case 'sunday-worship':
               return (
                 <ProCard
+                  key={`card-${service.name}`}
                   title={formatMessage({ id: `service.name.${service.name}` })}
                   subTitle={service.date}
                   type={'inner'}
                   gutter={[16, 8]}
                   extra={
-                    <ProCard ghost>
+                    <ProCard ghost key={`card-${service.name}-extra`}>
                       {service.servants
                         .filter((s) => s.title.startsWith('general'))
                         .map((servant) => (
-                          <ProCard ghost>
+                          <ProCard ghost key={`card-${servant.name}`}>
                             <Space>
                               {formatMessage({ id: `servant.title.${servant.title}` })}:
                               {servant.name}
@@ -77,7 +80,7 @@ const CollectorPage: React.FC = () => {
                   }
                 >
                   {servantGourps.map((group) => (
-                    <ProCard type={'inner'}>
+                    <ProCard type={'inner'} key={`card-${group}`}>
                       {renderServants(service.servants, group)}
                     </ProCard>
                   ))}
@@ -90,4 +93,4 @@ const CollectorPage: React.FC = () => {
   );
 };
 
-export default CollectorPage;
+export default OverviewPage;

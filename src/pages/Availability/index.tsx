@@ -8,7 +8,7 @@ import { ColumnsType } from 'antd/es/table';
 import { Table } from 'antd';
 import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
 
-const CollectorPage: React.FC = () => {
+const AvailabilityPage: React.FC = () => {
   const { formatMessage } = useIntl();
   const { availabilities, syncAvailabilities } = useModel('useAvailability');
   const [expandedRowKeys, setExpandedRowKeys] = useState<readonly ReactText[]>([]);
@@ -107,4 +107,4 @@ const CollectorPage: React.FC = () => {
   );
 };
 
-export default CollectorPage;
+export default AvailabilityPage;

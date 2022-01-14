@@ -1,3 +1,3 @@
-export default function access(initialState: { collectors: any[] }): any[] {
-  return initialState.collectors;
+export default function access(initialState: {}): Record<string, never> {
+  return initialState;
 }
