@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getOverview } from '@/services/overview';
 import ProCard from '@ant-design/pro-card';
 import { useIntl } from 'umi';
-import { List, Space } from 'antd';
+import { List, Space, Descriptions } from 'antd';
 
 const OverviewPage: React.FC = () => {
   const [services, setServices] = useState<API.ServiceSummary[]>([]);
@@ -43,16 +43,16 @@ const OverviewPage: React.FC = () => {
                   subTitle={service.date}
                   type={'inner'}
                   extra={
-                    <List<API.Servant>
-                      dataSource={service.servants}
-                      rowKey={'name'}
-                      renderItem={(servant) => (
-                        <List.Item>
-                          {formatMessage({ id: `servant.title.${servant.title}` })}
-                          {servant.name}
-                        </List.Item>
-                      )}
-                    />
+                    <Space>
+                      {service.servants.map((servant) => (
+                        <ProCard key={servant.name} ghost>
+                          <Space>
+                            <span>{formatMessage({ id: `servant.title.${servant.title}` })}</span> :
+                            <span>{servant.name}</span>
+                          </Space>
+                        </ProCard>
+                      ))}
+                    </Space>
                   }
                 />
               );
@@ -65,18 +65,18 @@ const OverviewPage: React.FC = () => {
                   type={'inner'}
                   gutter={[16, 8]}
                   extra={
-                    <ProCard ghost key={`card-${service.name}-extra`}>
+                    <Space size={'small'}>
                       {service.servants
                         .filter((s) => s.title.startsWith('general'))
                         .map((servant) => (
-                          <ProCard ghost key={`card-${servant.name}`}>
+                          <ProCard key={servant.name} ghost>
                             <Space>
-                              {formatMessage({ id: `servant.title.${servant.title}` })}:
-                              {servant.name}
+                              <span>{formatMessage({ id: `servant.title.${servant.title}` })}</span>{' '}
+                              :<span>{servant.name}</span>
                             </Space>
                           </ProCard>
                         ))}
-                    </ProCard>
+                    </Space>
                   }
                 >
                   {servantGourps.map((group) => (
