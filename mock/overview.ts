@@ -8,7 +8,7 @@ export default {
         name: 'friday-prayer',
         servants: [
           {
-            title: 'prayer.lead',
+            title: 'general.prayer.lead',
             name: '陳靜怡',
           },
         ],

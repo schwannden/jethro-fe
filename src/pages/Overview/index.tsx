@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { getOverview } from '@/services/overview';
 import ProCard from '@ant-design/pro-card';
 import { useIntl } from 'umi';
-import { List, Space, Descriptions } from 'antd';
+import { List, Space } from 'antd';
+import GoogleAuth from './components/GoogleAuth';
 
 const OverviewPage: React.FC = () => {
   const [services, setServices] = useState<API.ServiceSummary[]>([]);
@@ -32,62 +33,39 @@ const OverviewPage: React.FC = () => {
 
   return (
     <PageContainer ghost title={false}>
-      <ProCard title={'服事表'} gutter={[16, 8]} direction={'column'}>
-        {services.map((service) => {
-          switch (service.name) {
-            case 'friday-prayer':
-              return (
-                <ProCard
-                  key={`card-${service.name}`}
-                  title={formatMessage({ id: `service.name.${service.name}` })}
-                  subTitle={service.date}
-                  type={'inner'}
-                  extra={
-                    <Space>
-                      {service.servants.map((servant) => (
-                        <ProCard key={servant.name} ghost>
-                          <Space>
-                            <span>{formatMessage({ id: `servant.title.${servant.title}` })}</span> :
-                            <span>{servant.name}</span>
-                          </Space>
-                        </ProCard>
-                      ))}
-                    </Space>
-                  }
-                />
-              );
-            case 'sunday-worship':
-              return (
-                <ProCard
-                  key={`card-${service.name}`}
-                  title={formatMessage({ id: `service.name.${service.name}` })}
-                  subTitle={service.date}
-                  type={'inner'}
-                  gutter={[16, 8]}
-                  extra={
-                    <Space size={'small'}>
-                      {service.servants
-                        .filter((s) => s.title.startsWith('general'))
-                        .map((servant) => (
-                          <ProCard key={servant.name} ghost>
-                            <Space>
-                              <span>{formatMessage({ id: `servant.title.${servant.title}` })}</span>{' '}
-                              :<span>{servant.name}</span>
-                            </Space>
-                          </ProCard>
-                        ))}
-                    </Space>
-                  }
-                >
-                  {servantGourps.map((group) => (
-                    <ProCard type={'inner'} key={`card-${group}`}>
-                      {renderServants(service.servants, group)}
+      <GoogleAuth />
+      <ProCard ghost title={'服事表'} gutter={[16, 8]} direction={'column'}>
+        {services.map((service) => (
+          <ProCard
+            key={`card-${service.name}`}
+            title={formatMessage({ id: `service.name.${service.name}` })}
+            subTitle={service.date}
+            type={'inner'}
+            extra={
+              <Space>
+                {service.servants
+                  .filter((servant) => servant.title.startsWith('general'))
+                  .map((servant) => (
+                    <ProCard key={servant.name} ghost>
+                      <Space>
+                        <span>{formatMessage({ id: `servant.title.${servant.title}` })}</span> :
+                        <span>{servant.name}</span>
+                      </Space>
                     </ProCard>
                   ))}
-                </ProCard>
-              );
-          }
-        })}
+              </Space>
+            }
+          >
+            {service.name === 'friday-prayer'
+              ? ''
+              : servantGourps.map((group) => (
+                  <ProCard type={'inner'} key={`card-${group}`}>
+                    {renderServants(service.servants, group)}
+                  </ProCard>
+                ))}
+          </ProCard>
+        ))}
+        ;
       </ProCard>
     </PageContainer>
   );
