@@ -67,7 +67,7 @@ const AvailabilityPage: React.FC = () => {
   return (
     <PageContainer
       ghost
-      title={formatMessage({ id: 'page.availability', defaultMessage: 'Availability' })}
+      title={formatMessage({ id: 'menu.availability', defaultMessage: 'Availability' })}
     >
       <ProCard title={'更改本季時間調查'} ghost>
         <ProList<API.UserAvailability>
