@@ -4,21 +4,9 @@ export default {
   // copyright: '',
   links: [
     {
-      key: "8ndpoint",
-      title: "8ndpoint",
-      href: "https://8ndpoint.com",
-      blankTarget: true,
-    },
-    {
-      key: "Privacy Policy",
-      title: "Privacy Policy",
-      href: "https://8ndpoint.com/privacy",
-      blankTarget: true,
-    },
-    {
-      key: "Terms of Service",
-      title: "Terms of Service",
-      href: "https://8ndpoint.com/terms",
+      key: "wlchurch",
+      title: "萬隆基督的教會",
+      href: "https://www.wlchurch.org.tw/",
       blankTarget: true,
     },
   ],

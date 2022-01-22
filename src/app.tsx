@@ -9,7 +9,7 @@ import ThemeLayout from './Layout/ThemeLayout';
 import layoutSettings from '../config/layout';
 import interceptorSettings from './services/interceptor';
 // @ts-ignore
-import logo from '../public/8ndpoint_logo.png';
+import logo from '../public/logo.png';
 
 /** show loading when get current user is slowly，just support loading now */
 export const initialStateConfig = {

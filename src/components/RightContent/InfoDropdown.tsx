@@ -11,14 +11,14 @@ const QuestionMenu = () => {
     <Menu className={styles.shadow}>
       <Menu.Item
         onClick={() => {
-          window.open('https://8ndpoint.com/contact');
+          window.open('https://github.com/schwannden/jethro-fe/issues');
         }}
       >
         {formatMessage({ id: 'common.nav.contact' })}
       </Menu.Item>
       <Menu.Item
         onClick={() => {
-          window.open('https://www.8ndpoint.com/faq');
+          window.open('https://github.com/schwannden/jethro-fe/blob/develop/README.md');
         }}
       >
         {formatMessage({ id: 'common.nav.faq' })}

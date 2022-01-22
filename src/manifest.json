@@ -1,6 +1,6 @@
 {
-  "name": "商品補貨預測 AI 微服務 - 8ndpoint",
-  "short_name": "8ndpoint 補貨預測",
+  "name": "服事小幫手 - Jethro",
+  "short_name": "Jethro",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",

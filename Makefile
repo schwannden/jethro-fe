@@ -17,21 +17,12 @@ build-base: ## Build base image
 		  --build-arg AIRTABLE_KEY=$(AIRTABLE_KEY) \
 		  -t $(DOCKER_CI)/$(IMAGE_NAME):dev
 
-.PHONY: push-base
-push-base: ## push the built base image
-	@docker push $(DOCKER_CI)/$(IMAGE_NAME):dev
-
-.PHONY: pull-base
-pull-base: ## getting base image and jinja image
-	docker pull $(DOCKER_CI)/$(IMAGE_NAME):dev
-	docker pull $(DOCKER_CI)/jinja:$(JINJA_VERSION)
-
 .PHONY: config
 config: ## make docker-compose.yml from custom.mk config
 		docker run --rm -v $(GITROOT)/templates:/templates -e WITH_EFK=$(WITH_EFK) jinja:$(JINJA_VERSION) templates/docker-compose.yml.j2 --format=yaml > $(GITROOT)/docker/docker-compose.yml
 
 .PHONY: build
-build: pull-base  ## Build
+build: build-base  ## Build
 ifeq ($(CI), true)
 	$(info ******************** make build  ********************)
 	@cat $(ENV_FILE) > $(GITROOT)/.env
@@ -98,21 +89,16 @@ else
 	yarn run lint
 endif
 
-.PHONY: stop-dev
-stop-dev: config ## stop develop deployment
+.PHONY: stop
+stop: config ## stop develop deployment
 	@GITROOT=$(GITROOT) \
-		DEV_PORT=$(DEV_PORT) \
 		SERVICE_NAME=$(SERVICE_NAME) \
 		NETWORK_NAME=$(NETWORK_NAME) \
 		docker-compose -f docker/docker-compose.yml down
 
-.PHONY: stop
-stop: stop-dev ## stop production deployment
-
 .PHONY: deploy
 deploy: config
 	@GITROOT=$(GITROOT) \
-		DEV_PORT=$(DEV_PORT) \
 		SERVICE_NAME=$(SERVICE_NAME) \
 		NETWORK_NAME=$(NETWORK_NAME) \
 		HOSTNAME=$(HOSTNAME) \
