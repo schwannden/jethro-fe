@@ -23,7 +23,7 @@ declare namespace API {
   };
 
   export type ServiceSummaryFilter = {
-    date?: string;
+    startDate?: string;
     serviceGroups?: ServiceGroup[];
     servantTitles?: ServantTitle[];
   };

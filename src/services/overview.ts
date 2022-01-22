@@ -43,7 +43,7 @@ export const getServiceSummery = async (
           };
         });
 
-      const dateFilter: string = filter.date || moment().format('MM/DD/YYYY');
-      return services.filter((s) => moment(s.date, DateFormat) >= moment(dateFilter, DateFormat));
+      const dateFilter = (filter.startDate && moment(filter.startDate)) || moment().startOf('day');
+      return services.filter((s) => moment(s.date, DateFormat) >= dateFilter);
     });
 };
