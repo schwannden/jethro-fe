@@ -1,4 +1,6 @@
 declare namespace API {
+  import type { ServantTitle, ServiceName } from '@/utils/constant';
+
   export type DateAvailability = {
     date: string;
     available: boolean;
@@ -9,27 +11,10 @@ declare namespace API {
     availability: DateAvailability[];
   };
 
-  export type ServantTitle =
-    | 'prayer.lead'
-    | 'general.preacher'
-    | 'general.greeter'
-    | 'jk.lead'
-    | 'jk.piano'
-    | 'jk.streaming'
-    | 'jk.sound'
-    | 'jk.ppt'
-    | 'teacher.pre-3.lead'
-    | 'teacher.pre-3.assist'
-    | 'teacher.post-3'
-    | 'meal.dishes'
-    | 'meal.cook';
-
   export type Servant = {
-    title: string;
+    title: ServantTitle;
     name: string;
   };
-
-  export type ServiceName = 'friday-prayer' | 'sunday-worship';
 
   export type ServiceSummary = {
     date: string;

@@ -3,6 +3,7 @@ import { GoogleIcon } from '@/components/Icon';
 import { useGoogleApi } from 'react-gapi';
 import { SyncOutlined } from '@ant-design/icons';
 import { useEffect } from 'react';
+import { useIntl } from '@@/plugin-locale/localeExports';
 
 export default ({
   signedIn,
@@ -15,6 +16,8 @@ export default ({
   auth?: gapi.auth2.GoogleAuth;
   setAuth: (auth: gapi.auth2.GoogleAuth) => void;
 }) => {
+  const { formatMessage } = useIntl();
+
   const gapi = useGoogleApi({
     discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
     scopes: ['profile', 'https://www.googleapis.com/auth/spreadsheets'],
@@ -27,7 +30,6 @@ export default ({
       setAuth(authInstance);
       setSignedIn(authInstance.isSignedIn.get());
     }
-
   }, [gapi, setSignedIn, setAuth]);
 
   return auth ? (
@@ -50,7 +52,7 @@ export default ({
           })
         }
       >
-        Authorize With Google
+        {formatMessage({ id: 'google.auth.prompt' })}
       </Button>
     )
   ) : (
