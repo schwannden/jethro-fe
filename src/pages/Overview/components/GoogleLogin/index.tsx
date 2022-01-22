@@ -46,7 +46,7 @@ export default () => {
         style={{ width: '100%', alignItems: 'top', height: '40px' }}
         onClick={() =>
           auth &&
-          auth.signIn().then((user) => {
+          auth.signIn({redirect_uri: window.location.href}).then((user) => {
             setSignedIn(user.isSignedIn());
           })
         }
