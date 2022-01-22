@@ -37,7 +37,6 @@ export default defineConfig({
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn
   theme: themeSettings,
   layout: layoutSettings,
-  publicPath: '/jethro-fe/',
   chainWebpack(config) {
     config.module
       .rule("fonts")
