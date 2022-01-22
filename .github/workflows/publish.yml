@@ -37,3 +37,4 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: dist
+          absolute_build_dir: true
