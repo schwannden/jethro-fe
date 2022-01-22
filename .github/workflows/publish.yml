@@ -1,8 +1,9 @@
 name: publish package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - 'develop'
 
 jobs:
   publish:
@@ -30,7 +31,9 @@ jobs:
           echo "" >> .env
           yarn build
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        uses: crazy-max/ghaction-github-pages@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: gh-pages
-          folder: dist
+          target_branch: gh-pages
+          build_dir: dist
