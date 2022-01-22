@@ -1,6 +1,10 @@
 ﻿export default [
   {
     path: "/",
+    redirect: '/jethro-fe',
+  },
+  {
+    path: "/jethro-fe",
     name: "overview",
     component: "./Overview",
   },
