@@ -1,5 +1,5 @@
 export const ServantTitleKeys = [
-  'prayer.lead',
+  'general.prayer.lead',
   'general.preacher',
   'general.greeter',
   'general.sacrament',
@@ -9,7 +9,7 @@ export const ServantTitleKeys = [
   'jk.sound',
   'jk.ppt',
   'jk.vocal1',
-  'jk.vocal1',
+  'jk.vocal2',
   'jk.guitar',
   'teacher.pre-3.lead',
   'teacher.pre-3.assist',

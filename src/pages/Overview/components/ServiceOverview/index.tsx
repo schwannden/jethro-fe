@@ -5,6 +5,7 @@ import { useIntl } from 'umi';
 import { Col, Descriptions, Space } from 'antd';
 import { useGoogleApi } from 'react-gapi';
 import { ServantGroupKeys } from '@/utils/constant';
+import QueryFilter from '../Query';
 
 const OverviewPage = ({ signedIn, auth }: { signedIn: boolean; auth?: gapi.auth2.GoogleAuth }) => {
   const { formatMessage } = useIntl();
@@ -31,6 +32,9 @@ const OverviewPage = ({ signedIn, auth }: { signedIn: boolean; auth?: gapi.auth2
 
   return signedIn ? (
     <ProCard ghost title={'服事表'} gutter={[16, 8]} direction={'column'} loading={!auth}>
+      <ProCard key={'card-filter'} title={formatMessage({ id: `service.filter` })}>
+        <QueryFilter />
+      </ProCard>
       {services.map((service) => (
         <ProCard
           key={`card-${service.name}`}
