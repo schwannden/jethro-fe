@@ -1,6 +1,6 @@
 PRODUCT           := 8nd
 SERVICE_NAME      := jethro-fe
-NETWORK_NAME      := 8ndpoint
+NETWORK_NAME      := jethro
 IMAGE_NAME        := $(PRODUCT)-$(SERVICE_NAME)
 AIRTABLE_KEY      := key6GROo24nOw13pZ
 FE_BUILD_VERSION  ?= $(shell sed '3!d' $(GITROOT)/package.json | grep -oE '[0-9].*[^",]')

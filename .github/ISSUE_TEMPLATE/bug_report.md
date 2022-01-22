@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve Awesome-SSO's quality
+about: Create a report to help us improve jethro's quality
 title: ""
 labels: "T: bug"
 assignees: ""
@@ -40,8 +40,8 @@ The resulting error is:
 
 <!-- Please complete the following information: -->
 
-- awesome-sso version: <!-- e.g. [main] -->
-- OS and Python version: <!-- e.g. [Linux/Python 3.7.4rc1] -->
+- jethro-fe version: <!-- e.g. [main] -->
+- OS, node, and Yarn version: <!-- e.g. [Linux/v16.13.2/1.22.15] -->
 
 **Additional context**
 

@@ -2,7 +2,7 @@
   "name": "jethro",
   "version": "0.0.0",
   "private": true,
-  "description": "MoBagel 8ndpoint repurchase",
+  "description": "Jethro | help you manage church service",
   "scripts": {
     "start": "yarn run start:dev",
     "start:no-mock": "cross-env UMI_UI=none UMI_ENV=dev REACT_APP_ENV=dev MOCK=none umi dev",

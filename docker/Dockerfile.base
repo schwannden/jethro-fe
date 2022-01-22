@@ -1,7 +1,7 @@
 ARG REGISTRY
 FROM $REGISTRY/node:16.13.1-alpine AS builder-image
 
-LABEL maintainer="Chloe <chloechen@mobagel.com>"
+LABEL maintainer="Schwannden Kuo <schwannden@gmail.com>"
 
 ARG AIRTABLE_KEY
 ENV HOME=/root

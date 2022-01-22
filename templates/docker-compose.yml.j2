@@ -1,11 +1,11 @@
 version: '3.8'
 networks:
-  8ndpoint:
+  jethro:
     external: true
 services:
   fridge-fe:
     container_name: ${SERVICE_NAME}
-    image: harbor.mobagel.com/core-tech-release/nginx:1.19.2
+    image: nginx:1.19.2
     networks:
       - ${NETWORK_NAME}
     volumes:
