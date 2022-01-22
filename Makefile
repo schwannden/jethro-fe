@@ -22,7 +22,7 @@ config: ## make docker-compose.yml from custom.mk config
 		docker run --rm -v $(GITROOT)/templates:/templates -e WITH_EFK=$(WITH_EFK) jinja:$(JINJA_VERSION) templates/docker-compose.yml.j2 --format=yaml > $(GITROOT)/docker/docker-compose.yml
 
 .PHONY: build
-build: pull-base  ## Build
+build: build-base  ## Build
 ifeq ($(CI), true)
 	$(info ******************** make build  ********************)
 	@cat $(ENV_FILE) > $(GITROOT)/.env
