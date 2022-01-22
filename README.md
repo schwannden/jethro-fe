@@ -4,7 +4,7 @@
 
 ### 2. setup
 
-```js
+```bash
 yarn install
 yarn i18b:fetch
 ```
@@ -13,16 +13,12 @@ yarn i18b:fetch
 
 Provides the following ways for you to execute the project
 
-```js
+```bash
 // 1. run default dev mode, and use mock data
 yarn start
 
 // 2. run default dev mode, and don't use mock data
 yarn start:no-mock
-
-// 3. run project in preview mode
-yarn start:pre
-
 ```
 
 All Commands
