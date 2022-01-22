@@ -2703,6 +2703,13 @@
   resolved "https://registry.yarnpkg.com/@mapbox/whoots-js/-/whoots-js-3.1.0.tgz#497c67a1cef50d1a2459ba60f315e448d2ad87fe"
   integrity sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==
 
+"@maxim_mazurok/gapi.client.sheets@latest":
+  version "4.0.20220106"
+  resolved "https://registry.yarnpkg.com/@maxim_mazurok/gapi.client.sheets/-/gapi.client.sheets-4.0.20220106.tgz#f48976b1f629032d6dd524ddee3e80b05c0c5fca"
+  integrity sha512-WOx3Pnwum2IaZ/1fx90uLURGj0axRygDshdwxjbx5KsqpYVlKhhsnYjNNTKrJz5DZcajaKCbmhxJTtXipA/xTA==
+  dependencies:
+    "@types/gapi.client" "*"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -2962,6 +2969,30 @@
     "@types/express-serve-static-core" "^4.17.18"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/gapi.auth2@^0.0.56":
+  version "0.0.56"
+  resolved "https://registry.yarnpkg.com/@types/gapi.auth2/-/gapi.auth2-0.0.56.tgz#2f7031f79390b8401e7950d8277ada874fd2731c"
+  integrity sha512-kGaBtGVCqGS3Y05L56dGVlBpJflxLfwA0zpMQnQgGRFk1tsMPbQnogG51UQjt1vCuYfRO0Jd9/K5KDtzjAbMkA==
+  dependencies:
+    "@types/gapi" "*"
+
+"@types/gapi.client.sheets@^4.0.20201029":
+  version "4.0.20201029"
+  resolved "https://registry.yarnpkg.com/@types/gapi.client.sheets/-/gapi.client.sheets-4.0.20201029.tgz#f56daa6851c695473514e64c7c0dc4fd8096a463"
+  integrity sha512-Om2t05O59QnaPTJZdx6UQvejn6tV55qKebnxcpRx0wXWiDpf5ZZ3GSRGzqXXZt0ggkRkyErLdLLy4LPVgqGlTw==
+  dependencies:
+    "@maxim_mazurok/gapi.client.sheets" latest
+
+"@types/gapi.client@*", "@types/gapi.client@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@types/gapi.client/-/gapi.client-1.0.5.tgz#a6eb97e664fe51656c5b52258bd0afef28c76308"
+  integrity sha512-OTpbBMuzfC4lkvaomxqskI/iWRGW3zOZbDXZLNSyiuswTiSSGgILRLkg0POuZ4EgzEdaYaTlXpnXiCp07ri/Yw==
+
+"@types/gapi@*", "@types/gapi@^0.0.41":
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/@types/gapi/-/gapi-0.0.41.tgz#c477ee4f0951c005869219fd10b456ae2bba437e"
+  integrity sha512-tmHO66z/f91JZCDqinj/nNvQEszsz/hBT4+MvCSKT5sDzl5Ld/oXZ8WaecCBjRLw2uWKUInUHM9MhEXWkOiNjw==
 
 "@types/geojson@*":
   version "7946.0.8"
@@ -13233,6 +13264,13 @@ react-fast-compare@^3.1.1, react-fast-compare@^3.2.0:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
+react-gapi@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-gapi/-/react-gapi-1.0.1.tgz#a3657e1f349a20ba7ad7e6ebdfd4910b5983925d"
+  integrity sha512-jFF1qoPrGcivG+gcBUPoPkdkUFMAfWeMgb2eME+jbtJ0doAuz8NEDanBOCY7vbwCdPN8anty2zK+7WWkQB9dVw==
+  dependencies:
+    react-weblibrary "^1.0.1"
+
 react-helmet-async@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-1.2.2.tgz#38d58d32ebffbc01ba42b5ad9142f85722492389"
@@ -13434,6 +13472,13 @@ react-use@17.3.1:
     throttle-debounce "^3.0.1"
     ts-easing "^0.2.0"
     tslib "^2.1.0"
+
+react-weblibrary@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-weblibrary/-/react-weblibrary-1.0.2.tgz#72cc2f45ff1982c8c47651530ac6d67d5f32a578"
+  integrity sha512-jJcCTRKsUEjS/ixZlZJbzI0XTVyg54/CauQMIzyoeGauM8QOAG5ToRAoBrHiOb7IJnyln6kdR7wmicItss5oKg==
+  dependencies:
+    ts-essentials "^9.0.0"
 
 react@16.x:
   version "16.14.0"
@@ -15556,6 +15601,11 @@ ts-easing@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/ts-easing/-/ts-easing-0.2.0.tgz#c8a8a35025105566588d87dbda05dd7fbfa5a4ec"
   integrity sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==
+
+ts-essentials@^9.0.0:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-9.1.2.tgz#46db6944b73b4cd603f3d959ef1123c16ba56f59"
+  integrity sha512-EaSmXsAhEiirrTY1Oaa7TSpei9dzuCuFPmjKRJRPamERYtfaGS8/KpOSbjergLz/Y76/aZlV9i/krgzsuWEBbg==
 
 tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"

@@ -36,5 +36,6 @@
     "jest.config.js",
     "mock/*"
   ],
+  "types": ["gapi", "gapi.auth2", "gapi.client", "gapi.client.sheets"],
   "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
 }

@@ -8,18 +8,18 @@ import styles from './index.less';
 
 const DEFAULT_LANGS = [
   {
-    lang: 'en-US',
-    label: 'English',
-    title: 'Language',
-  },
-  {
     lang: 'zh-TW',
     label: '繁體中文',
+  },
+  {
+    lang: 'en-US',
+    label: 'English',
   },
 ];
 
 const SelectedLang: React.FC = () => {
   const itemClick = (item: MenuInfo) => {
+    console.log(item);
     setLocale(item?.key, false);
   };
 

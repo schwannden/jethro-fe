@@ -44,4 +44,7 @@ export default defineConfig({
       .use("file-loader")
       .loader("file-loader");
   },
+  define: {
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  },
 });

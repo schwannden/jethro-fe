@@ -1,4 +1,4 @@
-import { Settings as LayoutSettings } from "@ant-design/pro-layout";
+import { Settings as LayoutSettings } from '@ant-design/pro-layout';
 
 const Settings: LayoutSettings & {
   pwa?: boolean;
@@ -6,17 +6,17 @@ const Settings: LayoutSettings & {
   locale?: boolean;
   siderWidth?: number;
 } = {
-  title: "Collector",
+  title: 'Jethro',
   locale: true,
   siderWidth: 208,
   headerHeight: 72,
-  navTheme: "light", // light, dark
-  layout: "top", // side, top, mix
-  contentWidth: "Fluid",
+  navTheme: 'light', // light, dark
+  layout: 'top', // side, top, mix
+  contentWidth: 'Fluid',
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  iconfontUrl: "",
+  iconfontUrl: '',
 };
 
 export default Settings;

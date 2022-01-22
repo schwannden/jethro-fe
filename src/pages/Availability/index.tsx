@@ -8,7 +8,7 @@ import { ColumnsType } from 'antd/es/table';
 import { Table } from 'antd';
 import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
 
-const CollectorPage: React.FC = () => {
+const AvailabilityPage: React.FC = () => {
   const { formatMessage } = useIntl();
   const { availabilities, syncAvailabilities } = useModel('useAvailability');
   const [expandedRowKeys, setExpandedRowKeys] = useState<readonly ReactText[]>([]);
@@ -67,7 +67,7 @@ const CollectorPage: React.FC = () => {
   return (
     <PageContainer
       ghost
-      title={formatMessage({ id: 'page.availability', defaultMessage: 'Availability' })}
+      title={formatMessage({ id: 'menu.availability', defaultMessage: 'Availability' })}
     >
       <ProCard title={'更改本季時間調查'} ghost>
         <ProList<API.UserAvailability>
@@ -107,4 +107,4 @@ const CollectorPage: React.FC = () => {
   );
 };
 
-export default CollectorPage;
+export default AvailabilityPage;

@@ -8,6 +8,7 @@
     path: "/availability",
     name: "availability",
     component: "./Availability",
+    hideInMenu: true,
   },
   {
     component: "./404",
