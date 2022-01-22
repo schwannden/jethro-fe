@@ -1,41 +1,27 @@
-import { useEffect, useState } from 'react';
-import { getOverview } from '@/services/overview';
+import { useEffect } from 'react';
 import ProCard from '@ant-design/pro-card';
 import { useIntl } from 'umi';
-import { Col, Descriptions, Space } from 'antd';
-import { useGoogleApi } from 'react-gapi';
-import { ServantGroupKeys } from '@/utils/constant';
+import { Col, Descriptions, message, Space } from 'antd';
+import { ServiceGroupKeys } from '@/utils/constant';
 import QueryFilter from '../Query';
+import { useModel } from '@@/plugin-model/useModel';
 
-const OverviewPage = ({ signedIn, auth }: { signedIn: boolean; auth?: gapi.auth2.GoogleAuth }) => {
+const OverviewPage = () => {
   const { formatMessage } = useIntl();
-  const [spreadSheetClient, setSpreadSheetClient] =
-    useState<gapi.client.sheets.SpreadsheetsResource>();
-  const [services, setServices] = useState<API.ServiceSummary[]>([]);
-  const [] = useState<API.ServiceSummary[]>([]);
+  const { services, syncServiceSummery } = useModel('useOverview');
+  const { signedIn, auth } = useModel('useGoogleAPI');
   const loadingMessage = auth === undefined ? 'google.auth.loading' : 'signin.prompt';
 
-  const gapi = useGoogleApi();
-
   useEffect(() => {
-    if (gapi?.client?.sheets && signedIn) {
-      // @ts-ignore
-      setSpreadSheetClient(gapi.client.sheets.spreadsheets);
-    }
-  }, [gapi, signedIn]);
-
-  useEffect(() => {
-    if (!!spreadSheetClient) {
-      getOverview(spreadSheetClient).then(setServices);
-    }
-  }, [spreadSheetClient]);
+    syncServiceSummery().catch((e) => message.error(e));
+  }, [syncServiceSummery]);
 
   return signedIn ? (
     <ProCard ghost title={'服事表'} gutter={[16, 8]} direction={'column'} loading={!auth}>
       <ProCard key={'card-filter'} title={formatMessage({ id: `service.filter` })}>
         <QueryFilter />
       </ProCard>
-      {services.map((service) => (
+      {services.map((service: API.ServiceSummary) => (
         <ProCard
           key={`card-${service.name}`}
           title={formatMessage({ id: `service.name.${service.name}` })}
@@ -56,25 +42,29 @@ const OverviewPage = ({ signedIn, auth }: { signedIn: boolean; auth?: gapi.auth2
             </Space>
           }
         >
-          {ServantGroupKeys.map((group) => (
-            <Descriptions
-              size={'small'}
-              key={group}
-              title={formatMessage({ id: `servant.group.${group}` })}
-              column={{ xl: 5, lg: 5, md: 3, sm: 2, xs: 1 }}
-            >
-              {service.servants
-                .filter((s) => s.title.startsWith(group))
-                .map((servant) => (
-                  <Descriptions.Item
-                    key={servant.title}
-                    label={formatMessage({ id: `servant.title.${servant.title}` })}
-                  >
-                    {servant.name}
-                  </Descriptions.Item>
-                ))}
-            </Descriptions>
-          ))}
+          {ServiceGroupKeys.map((group) =>
+            service.servants.filter((s) => s.title.startsWith(group)).length > 0 ? (
+              <Descriptions
+                size={'small'}
+                key={group}
+                title={formatMessage({ id: `servant.group.${group}` })}
+                column={{ xl: 5, lg: 5, md: 3, sm: 2, xs: 1 }}
+              >
+                {service.servants
+                  .filter((s) => s.title.startsWith(group))
+                  .map((servant) => (
+                    <Descriptions.Item
+                      key={servant.title}
+                      label={formatMessage({ id: `servant.title.${servant.title}` })}
+                    >
+                      {servant.name}
+                    </Descriptions.Item>
+                  ))}
+              </Descriptions>
+            ) : (
+              ''
+            ),
+          )}
         </ProCard>
       ))}
     </ProCard>

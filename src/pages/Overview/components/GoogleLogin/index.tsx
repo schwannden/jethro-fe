@@ -4,19 +4,11 @@ import { useGoogleApi } from 'react-gapi';
 import { SyncOutlined } from '@ant-design/icons';
 import { useEffect } from 'react';
 import { useIntl } from '@@/plugin-locale/localeExports';
+import { useModel } from '@@/plugin-model/useModel';
 
-export default ({
-  signedIn,
-  setSignedIn,
-  auth,
-  setAuth,
-}: {
-  signedIn: boolean;
-  setSignedIn: (signedIn: boolean) => void;
-  auth?: gapi.auth2.GoogleAuth;
-  setAuth: (auth: gapi.auth2.GoogleAuth) => void;
-}) => {
+export default () => {
   const { formatMessage } = useIntl();
+  const { auth, setAuth, signedIn, setSignedIn, setSpreadSheetClient } = useModel('useGoogleAPI');
 
   const gapi = useGoogleApi({
     discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
@@ -31,6 +23,13 @@ export default ({
       setSignedIn(authInstance.isSignedIn.get());
     }
   }, [gapi, setSignedIn, setAuth]);
+
+  useEffect(() => {
+    if (gapi?.client?.sheets && signedIn) {
+      // @ts-ignore
+      setSpreadSheetClient(gapi.client.sheets.spreadsheets);
+    }
+  }, [gapi, signedIn, setSpreadSheetClient]);
 
   return auth ? (
     signedIn ? (

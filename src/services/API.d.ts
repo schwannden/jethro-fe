@@ -1,5 +1,5 @@
 declare namespace API {
-  import type { ServantTitle, ServiceName } from '@/utils/constant';
+  import type { ServantTitle, ServiceName, ServiceGroup } from '@/utils/constant';
 
   export type DateAvailability = {
     date: string;
@@ -20,5 +20,11 @@ declare namespace API {
     date: string;
     name: ServiceName;
     servants: Servant[];
+  };
+
+  export type ServiceSummaryFilter = {
+    date?: string;
+    serviceGroups?: ServiceGroup[];
+    servantTitles?: ServantTitle[];
   };
 }

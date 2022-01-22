@@ -24,9 +24,11 @@ export const ServiceNameKeys = ['friday-prayer', 'sunday-worship'] as const;
 export type ServiceNameKeyArray = typeof ServiceNameKeys;
 export type ServiceName = ServiceNameKeyArray[number];
 
-export const ServantGroupKeys = ['general', 'teacher', 'jk', 'meal'] as const;
-export type ServiceGroupKeyArray = typeof ServantGroupKeys;
+export const ServiceGroupKeys = ['general', 'teacher', 'jk', 'meal'] as const;
+export type ServiceGroupKeyArray = typeof ServiceGroupKeys;
 export type ServiceGroup = ServiceGroupKeyArray[number];
+
+export const DateFormat = 'MM/DD/YYYY';
 
 export const TitleMapping = {
   兒主中年級: 'teacher.post-3',

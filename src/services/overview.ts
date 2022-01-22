@@ -1,7 +1,11 @@
 import moment from 'moment';
-import { TitleMapping } from '@/utils/constant';
+import { TitleMapping, DateFormat } from '@/utils/constant';
+import type { ServiceGroup, ServantTitle } from '@/utils/constant';
 
-export const getOverview = async (spreadSheetClient: gapi.client.sheets.SpreadsheetsResource) => {
+export const getServiceSummery = async (
+  spreadSheetClient: gapi.client.sheets.SpreadsheetsResource,
+  filter: API.ServiceSummaryFilter,
+) => {
   return spreadSheetClient.values
     .get({
       spreadsheetId: '1G3zqXsX6NwisgL3Al-cxQREsIFyYyFM1tEznClA0bug',
@@ -20,17 +24,26 @@ export const getOverview = async (spreadSheetClient: gapi.client.sheets.Spreadsh
             .reduce((acc, record) => ({ ...acc, [record[0]]: record[1] }), {}),
         )
         .map((dict: Record<string, string>) => {
-          const date = moment(dict['日期'], 'MM/DD/YYYY').format('MM/DD/YYYY');
+          const date = dict['日期'];
           const servants: API.Servant[] = Object.keys(dict).map((originalKey) => ({
             title: TitleMapping[originalKey] || originalKey,
             name: dict[originalKey],
           }));
+          const groupFilter: ServiceGroup[] = filter.serviceGroups ? filter.serviceGroups : [];
+          const titleFilter: ServantTitle[] = filter.servantTitles ? filter.servantTitles : [];
+          const filteredServants = servants.filter(
+            (s) =>
+              (groupFilter.length == 0 || groupFilter.some((group) => s.title.startsWith(group))) &&
+              (titleFilter.length == 0 || titleFilter.includes(s.title)),
+          );
           return {
             date,
             name: 'sunday-worship',
-            servants: servants,
+            servants: filteredServants,
           };
         });
-      return services;
+
+      const dateFilter: string = filter.date || moment().format('MM/DD/YYYY');
+      return services.filter((s) => moment(s.date, DateFormat) >= moment(dateFilter, DateFormat));
     });
 };
