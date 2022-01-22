@@ -14,8 +14,20 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - name: Install and Build
+        env:
+          AIRTABLE_KEY: ${{ secrets.AIRTABLE_KEY }}
+          AIRTABLE_I18N_BASE: ${{ secrets.AIRTABLE_I18N_BASE }}
+          AIRTABLE_I18N_TABLE: ${{ secrets.AIRTABLE_I18N_TABLE }}
+          AIRTABLE_I18N_VIEW: ${{ secrets.AIRTABLE_I18N_VIEW }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
         run: |
           yarn
+          echo "AIRTABLE_KEY=${AIRTABLE_KEY}" > .env
+          echo "AIRTABLE_I18N_BASE=${AIRTABLE_I18N_BASE}" >> .env
+          echo "AIRTABLE_I18N_TABLE=${AIRTABLE_I18N_TABLE}" >> .env
+          echo "AIRTABLE_I18N_VIEW=${AIRTABLE_I18N_VIEW}" >> .env
+          echo "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> .env
+          echo "" >> .env
           yarn build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.2
