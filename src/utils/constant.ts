@@ -1,7 +1,7 @@
 export const ServantTitleKeys = [
   'general.prayer.lead',
   'general.preacher',
-  'general.greeter',
+  'hospitality.greeter',
   'general.sacrament',
   'jk.lead',
   'jk.piano',
@@ -14,8 +14,8 @@ export const ServantTitleKeys = [
   'teacher.pre-3.lead',
   'teacher.pre-3.assist',
   'teacher.post-3',
-  'meal.dishes',
-  'meal.cook',
+  'hospitality.dishes',
+  'hospitality.cook',
 ] as const;
 export type ServantTitleKeysArray = typeof ServantTitleKeys;
 export type ServantTitle = ServantTitleKeysArray[number];
@@ -24,7 +24,7 @@ export const ServiceNameKeys = ['friday-prayer', 'sunday-worship'] as const;
 export type ServiceNameKeyArray = typeof ServiceNameKeys;
 export type ServiceName = ServiceNameKeyArray[number];
 
-export const ServiceGroupKeys = ['general', 'teacher', 'jk', 'meal'] as const;
+export const ServiceGroupKeys = ['general', 'teacher', 'jk', 'hospitality'] as const;
 export type ServiceGroupKeyArray = typeof ServiceGroupKeys;
 export type ServiceGroup = ServiceGroupKeyArray[number];
 
@@ -38,11 +38,12 @@ export const TitleMapping = {
   吉他: 'jk.guitar',
   幼兒主理: 'teacher.pre-3.lead',
   幼兒助理: 'teacher.pre-3.assist',
-  愛筵: 'meal.cook',
+  愛筵: 'hospitality.cook',
   投影片: 'jk.ppt',
-  招待: 'general.greeter',
+  招待: 'hospitality.greeter',
   擘餅: 'general.sacrament',
-  洗碗: 'meal.dishes',
+  禱告會: 'general.prayer.lead',
+  洗碗: 'hospitality.dishes',
   特別日子: 'service.special-day',
   直播: 'jk.streaming',
   講員: 'general.preacher',

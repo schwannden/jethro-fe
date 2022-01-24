@@ -9,7 +9,7 @@ export const getServiceSummery = async (
   return spreadSheetClient.values
     .get({
       spreadsheetId: '1G3zqXsX6NwisgL3Al-cxQREsIFyYyFM1tEznClA0bug',
-      range: 'Q1!A2:T',
+      range: 'Q1!A2:U',
     })
     .then((resp) => resp.result.values || [])
     .then((rows: any[][]) => {

@@ -42,7 +42,7 @@ export default {
             name: '廖聲蕙',
           },
           {
-            title: 'general.greeter',
+            title: 'hospitality.greeter',
             name: '百恩',
           },
           {
@@ -58,11 +58,11 @@ export default {
             name: '陳靜怡',
           },
           {
-            title: 'meal.dishes',
+            title: 'hospitality.dishes',
             name: '暫停乙次',
           },
           {
-            title: 'meal.cook',
+            title: 'hospitality.cook',
             name: '暫停乙次',
           },
         ],
