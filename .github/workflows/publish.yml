@@ -30,6 +30,7 @@ jobs:
           echo "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> .env
           echo "" >> .env
           yarn build
+          echo 'jethro.schwannden.com' > dist/CNAME
       - name: Deploy 🚀
         uses: crazy-max/ghaction-github-pages@v2
         env:
