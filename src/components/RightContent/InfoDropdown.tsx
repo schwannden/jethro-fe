@@ -23,6 +23,13 @@ const QuestionMenu = () => {
       >
         {formatMessage({ id: 'common.nav.faq' })}
       </Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          window.open('https://jethro.schwannden.com/privacy');
+        }}
+      >
+        {formatMessage({ id: 'common.nav.privacy' })}
+      </Menu.Item>
     </Menu>
   );
 };

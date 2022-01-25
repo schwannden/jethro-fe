@@ -11,6 +11,12 @@
     hideInMenu: true,
   },
   {
+    path: "/privacy",
+    name: "privacy",
+    component: "./privacy",
+    hideInMenu: true,
+  },
+  {
     component: "./404",
   },
 ];
