@@ -22,7 +22,6 @@ export default () => {
     >
       <ProFormSelect<ServiceGroup>
         name="serviceGroups"
-        showSearch
         placeholder={formatMessage({ id: `service.group` })}
         width={300}
         fieldProps={{
@@ -49,7 +48,6 @@ export default () => {
           return (
             <ProFormSelect<ServantTitle>
               name="servantTitles"
-              showSearch
               placeholder={formatMessage({ id: `servant.title` })}
               fieldProps={{
                 options: servantTitleKeys.map((key: ServantTitle) => ({
