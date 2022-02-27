@@ -34,6 +34,8 @@ const OverviewPage = () => {
               title={formatMessage({ id: `service.name.${service.name}` })}
               subTitle={service.date}
               gutter={[16, 8]}
+              bordered
+              headerBordered
               extra={
                 <Space>
                   {service.servants
