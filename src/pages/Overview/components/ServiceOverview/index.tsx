@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ProCard from '@ant-design/pro-card';
 import { useIntl } from 'umi';
-import { Col, Descriptions, message, Row, Space } from 'antd';
+import { Col, Descriptions, List, message, Row, Space } from 'antd';
 import { ServiceGroup, ServiceGroupKeys } from '@/utils/constant';
 import QueryFilter from '../Query';
 import { useModel } from '@@/plugin-model/useModel';
@@ -81,7 +81,32 @@ const OverviewPage = () => {
   ) : (
     <Col span={24}>
       <h4 style={{ textAlign: 'center' }}> {formatMessage({ id: loadingMessage })} </h4>
-      <ProCard layout={'center'} loading={true} />
+      <ProCard>
+        <List>
+          <List.Item>
+            <List.Item.Meta
+              title={formatMessage({ id: 'app.author.title' })}
+              description={formatMessage({ id: 'app.author.content' })}
+            />
+          </List.Item>
+          <List.Item>
+            <List.Item.Meta
+              title={formatMessage({ id: 'app.usage.title' })}
+              description={formatMessage({ id: 'app.usage.content' })}
+            />
+          </List.Item>
+          <List.Item>
+            <List.Item.Meta
+              title={formatMessage({ id: 'app.demo.title' })}
+              description={
+                <a href="https://youtu.be/m1iRx5C76xU" target="_blank">
+                  {formatMessage({ id: 'app.demo.content' })}
+                </a>
+              }
+            />
+          </List.Item>
+        </List>
+      </ProCard>
     </Col>
   );
 };
