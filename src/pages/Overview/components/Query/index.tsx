@@ -13,13 +13,32 @@ import { useModel } from '@@/plugin-model/useModel';
 
 export default () => {
   const { formatMessage } = useIntl();
-  const { syncServiceSummery } = useModel('useOverview');
+  const { servantNames, syncServiceSummery } = useModel('useOverview');
 
   return (
     <QueryFilter<API.ServiceSummaryFilter>
       initialValues={{ startDate: moment() }}
       onFinish={async (formData) => syncServiceSummery(formData).then(() => true)}
     >
+      <ProFormDatePicker
+        name="startDate"
+        label={formatMessage({ id: `service.filter.start-date` })}
+      />
+      <ProFormSelect<ServiceGroup>
+        name="servantNames"
+        placeholder={formatMessage({ id: `servant.name` })}
+        showSearch={false}
+        width={300}
+        fieldProps={{
+          options: servantNames.map((key) => ({
+            value: key,
+            label: key,
+          })),
+          allowClear: true,
+          mode: 'multiple',
+          style: { width: '100%' },
+        }}
+      />
       <ProFormSelect<ServiceGroup>
         name="serviceGroups"
         placeholder={formatMessage({ id: `service.group` })}
@@ -64,10 +83,6 @@ export default () => {
           );
         }}
       </ProFormDependency>
-      <ProFormDatePicker
-        name="startDate"
-        label={formatMessage({ id: `service.filter.start-date` })}
-      />
     </QueryFilter>
   );
 };

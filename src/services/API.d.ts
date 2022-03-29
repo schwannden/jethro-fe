@@ -24,6 +24,7 @@ declare namespace API {
 
   export type ServiceSummaryFilter = {
     startDate?: string;
+    servantNames?: string[];
     serviceGroups?: ServiceGroup[];
     servantTitles?: ServantTitle[];
   };

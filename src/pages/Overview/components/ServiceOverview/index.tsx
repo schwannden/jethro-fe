@@ -59,40 +59,40 @@ const OverviewPage = () => {
                 </Space>
               }
             >
-              <Space direction={"vertical"}>
-              {alerts(service).map((alert) => (
-                <Alert
-                  message={`${alert[0].name} ${formatMessage({
-                    id: 'service.error.duplicate',
-                  })}: ${alert
-                    .map((servant) => formatMessage({ id: `servant.title.${servant.title}` }))
-                    .join(', ')}`}
-                  type="error"
-                />
-              ))}
-              {ServiceGroupKeys.map((group) =>
-                service.servants.filter((s) => s.title.startsWith(group)).length > 0 ? (
-                  <Descriptions
-                    size={'small'}
-                    key={group}
-                    title={formatMessage({ id: `servant.group.${group}` })}
-                    column={groupRWD(group)}
-                  >
-                    {service.servants
-                      .filter((s) => s.title.startsWith(group))
-                      .map((servant) => (
-                        <Descriptions.Item
-                          key={servant.title}
-                          label={formatMessage({ id: `servant.title.${servant.title}` })}
-                        >
-                          {servant.name}
-                        </Descriptions.Item>
-                      ))}
-                  </Descriptions>
-                ) : (
-                  ''
-                ),
-              )}
+              <Space direction={'vertical'}>
+                {alerts(service).map((alert) => (
+                  <Alert
+                    message={`${alert[0].name} ${formatMessage({
+                      id: 'service.error.duplicate',
+                    })}: ${alert
+                      .map((servant) => formatMessage({ id: `servant.title.${servant.title}` }))
+                      .join(', ')}`}
+                    type="error"
+                  />
+                ))}
+                {ServiceGroupKeys.map((group) =>
+                  service.servants.filter((s) => s.title.startsWith(group)).length > 0 ? (
+                    <Descriptions
+                      size={'small'}
+                      key={group}
+                      title={formatMessage({ id: `servant.group.${group}` })}
+                      column={groupRWD(group)}
+                    >
+                      {service.servants
+                        .filter((s) => s.title.startsWith(group))
+                        .map((servant) => (
+                          <Descriptions.Item
+                            key={servant.title}
+                            label={formatMessage({ id: `servant.title.${servant.title}` })}
+                          >
+                            {servant.name}
+                          </Descriptions.Item>
+                        ))}
+                    </Descriptions>
+                  ) : (
+                    ''
+                  ),
+                )}
               </Space>
             </ProCard>
           </Col>

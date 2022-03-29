@@ -26,16 +26,20 @@ export const getServiceSummery = async (
         )
         .map((dict: Record<string, string>) => {
           const date = dict['日期'];
-          const servants: API.Servant[] = Object.keys(dict).map((originalKey) => ({
-            title: TitleMapping[originalKey] || originalKey,
-            name: dict[originalKey],
-          }));
+          const servants: API.Servant[] = Object.keys(dict)
+            .filter((key) => key !== '日期' && key !== 'service.special-day')
+            .map((originalKey) => ({
+              title: TitleMapping[originalKey] || originalKey,
+              name: dict[originalKey],
+            }));
+          const nameFilter: string[] = filter.servantNames ? filter.servantNames : [];
           const groupFilter: ServiceGroup[] = filter.serviceGroups ? filter.serviceGroups : [];
           const titleFilter: ServantTitle[] = filter.servantTitles ? filter.servantTitles : [];
           const filteredServants = servants.filter(
             (s) =>
               (groupFilter.length == 0 || groupFilter.some((group) => s.title.startsWith(group))) &&
-              (titleFilter.length == 0 || titleFilter.includes(s.title)),
+              (titleFilter.length == 0 || titleFilter.includes(s.title)) &&
+              (nameFilter.length == 0 || nameFilter.find((name) => s.name.includes(name))),
           );
           return {
             date,
