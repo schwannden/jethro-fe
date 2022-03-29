@@ -12,7 +12,7 @@ export default () => {
 
   const gapi = useGoogleApi({
     discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-    scopes: ['profile'],
+    scopes: ['profile', 'https://www.googleapis.com/auth/spreadsheets.readonly'],
   });
 
   useEffect(() => {
