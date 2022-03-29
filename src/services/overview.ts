@@ -9,9 +9,10 @@ export const getServiceSummery = async (
   return spreadSheetClient.values
     .get({
       spreadsheetId: '1G3zqXsX6NwisgL3Al-cxQREsIFyYyFM1tEznClA0bug',
-      range: '2022總表!A2:U',
+      range: '2022總表!A:U',
     })
     .then((resp) => resp.result.values || [])
+    .then((rows: any[][]) => rows.filter((row) => row.length > 1))
     .then((rows: any[][]) => {
       const header = rows.shift();
       if (header == undefined || rows.length === 0) return [];
@@ -42,8 +43,8 @@ export const getServiceSummery = async (
             servants: filteredServants,
           };
         });
-
+      const validServices = services.filter((s) => s.date);
       const dateFilter = (filter.startDate && moment(filter.startDate)) || moment().startOf('day');
-      return services.filter((s) => moment(s.date, DateFormat) >= dateFilter);
+      return validServices.filter((s) => moment(s.date, DateFormat) >= dateFilter);
     });
 };

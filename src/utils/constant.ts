@@ -11,6 +11,7 @@ export const ServantTitleKeys = [
   'jk.vocal1',
   'jk.vocal2',
   'jk.guitar',
+  'jk.drum',
   'teacher.pre-3.lead',
   'teacher.pre-3.assist',
   'teacher.post-3',
@@ -49,4 +50,5 @@ export const TitleMapping = {
   講員: 'general.preacher',
   音控: 'jk.sound',
   領會: 'jk.lead',
+  鼓: 'jk.drum',
 };

@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import ProCard from '@ant-design/pro-card';
 import { useIntl } from 'umi';
-import { Col, Descriptions, List, message, Row, Space } from 'antd';
-import { ServiceGroup, ServiceGroupKeys } from '@/utils/constant';
+import { Alert, Col, Descriptions, List, message, Row, Space } from 'antd';
+import type { ServiceGroup } from '@/utils/constant';
+import { ServiceGroupKeys } from '@/utils/constant';
 import QueryFilter from '../Query';
 import { useModel } from '@@/plugin-model/useModel';
 
@@ -18,6 +19,14 @@ const OverviewPage = () => {
 
   const groupRWD = (group: ServiceGroup) =>
     group === 'jk' ? { xl: 4, lg: 4, md: 2, sm: 2, xs: 2 } : { xl: 3, lg: 3, md: 2, sm: 2, xs: 2 };
+
+  const alerts = (service: API.ServiceSummary) => {
+    const servantNames = service.servants
+      .filter((s) => s.title !== 'general.prayer.lead' && s.name !== '暫停')
+      .map((s) => s.name);
+    const duplicates = servantNames.filter((item, index) => servantNames.indexOf(item) != index);
+    return duplicates.map((name) => service.servants.filter((s) => s.name === name));
+  };
 
   return signedIn ? (
     <ProCard ghost title={'服事表'} gutter={[16, 8]} direction={'column'} loading={!auth}>
@@ -50,6 +59,17 @@ const OverviewPage = () => {
                 </Space>
               }
             >
+              <Space direction={"vertical"}>
+              {alerts(service).map((alert) => (
+                <Alert
+                  message={`${alert[0].name} ${formatMessage({
+                    id: 'service.error.duplicate',
+                  })}: ${alert
+                    .map((servant) => formatMessage({ id: `servant.title.${servant.title}` }))
+                    .join(', ')}`}
+                  type="error"
+                />
+              ))}
               {ServiceGroupKeys.map((group) =>
                 service.servants.filter((s) => s.title.startsWith(group)).length > 0 ? (
                   <Descriptions
@@ -73,6 +93,7 @@ const OverviewPage = () => {
                   ''
                 ),
               )}
+              </Space>
             </ProCard>
           </Col>
         ))}
