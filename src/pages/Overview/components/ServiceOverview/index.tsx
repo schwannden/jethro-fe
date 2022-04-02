@@ -68,6 +68,7 @@ const OverviewPage = () => {
                       .map((servant) => formatMessage({ id: `servant.title.${servant.title}` }))
                       .join(', ')}`}
                     type="error"
+                    closable={true}
                   />
                 ))}
                 {ServiceGroupKeys.map((group) =>
