@@ -7,18 +7,18 @@
  */
 export default {
   dev: {
-    "/api/": {
-      target: "https://fridge.localhost.com",
+    '/api/': {
+      target: 'http://localhost:8000',
       changeOrigin: true,
       secure: false,
-      pathRewrite: { "^": "" },
+      pathRewrite: { '^': '' },
     },
   },
   pre: {
-    "/api/": {
-      target: "https://preview.api",
+    '/api/': {
+      target: 'https://preview.api',
       changeOrigin: true,
-      pathRewrite: { "^": "" },
+      pathRewrite: { '^': '' },
     },
   },
 };

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ProCard from '@ant-design/pro-card';
 import { useIntl } from 'umi';
-import { Alert, Col, Descriptions, List, message, Row, Space } from 'antd';
+import { Alert, Col, Descriptions, List, Row, Space } from 'antd';
 import type { ServiceGroup } from '@/utils/constant';
 import { ServiceGroupKeys } from '@/utils/constant';
 import QueryFilter from '../Query';
@@ -10,12 +10,11 @@ import { useModel } from '@@/plugin-model/useModel';
 const OverviewPage = () => {
   const { formatMessage } = useIntl();
   const { services, syncServiceSummery } = useModel('useOverview');
-  const { signedIn, auth } = useModel('useGoogleAPI');
-  const loadingMessage = auth === undefined ? 'google.auth.loading' : 'signin.prompt';
+  const { signedIn } = useModel('useFief');
 
   useEffect(() => {
-    syncServiceSummery().catch((e) => message.error(e));
-  }, [syncServiceSummery]);
+    syncServiceSummery();
+  }, []);
 
   const groupRWD = (group: ServiceGroup) =>
     group === 'jk' ? { xl: 4, lg: 4, md: 2, sm: 2, xs: 2 } : { xl: 3, lg: 3, md: 2, sm: 2, xs: 2 };
@@ -29,7 +28,7 @@ const OverviewPage = () => {
   };
 
   return signedIn ? (
-    <ProCard ghost title={'服事表'} gutter={[16, 8]} direction={'column'} loading={!auth}>
+    <ProCard ghost title={'服事表'} gutter={[16, 8]} direction={'column'}>
       <Row gutter={[16, 16]}>
         <Col span={24}>
           <ProCard key={'card-filter'} title={formatMessage({ id: `service.filter` })}>
@@ -102,7 +101,7 @@ const OverviewPage = () => {
     </ProCard>
   ) : (
     <Col span={24}>
-      <h4 style={{ textAlign: 'center' }}> {formatMessage({ id: loadingMessage })} </h4>
+      <h4 style={{ textAlign: 'center' }}> {formatMessage({ id: 'signin.prompt' })} </h4>
       <ProCard>
         <List>
           <List.Item>

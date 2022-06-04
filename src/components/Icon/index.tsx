@@ -1,3 +1,3 @@
-import GoogleIcon from './GoogleIcon';
+import FiefIcon from './FiefIcon';
 
-export { GoogleIcon };
+export { FiefIcon };

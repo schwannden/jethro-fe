@@ -28,4 +28,8 @@ declare namespace API {
     serviceGroups?: ServiceGroup[];
     servantTitles?: ServantTitle[];
   };
+
+  export type AuthUrlResponse = {
+    auth_url: string;
+  };
 }
