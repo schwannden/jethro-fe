@@ -42,7 +42,7 @@ const OverviewPage = () => {
               key={`card-${service.name}`}
               title={formatMessage({ id: `service.name.${service.name}` })}
               subTitle={service.date}
-              gutter={[16, 8]}
+              gutter={[8, 4]}
               bordered
               headerBordered
               extra={

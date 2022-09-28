@@ -48,7 +48,13 @@ export const getServiceSummery = async (
           };
         });
       const validServices = services.filter((s) => s.date);
-      const dateFilter = (filter.startDate && moment(filter.startDate)) || moment().startOf('day');
-      return validServices.filter((s) => moment(s.date, DateFormat) >= dateFilter);
+      const startDate = (filter.startDate && moment(filter.startDate)) || moment().startOf('day');
+      const endDate = moment(startDate).endOf('month');
+      if (endDate.diff(startDate, 'd') < 7) {
+        endDate.add(1, 'day').endOf('month');
+      }
+      return validServices.filter(
+        (s) => moment(s.date, DateFormat) >= startDate && moment(s.date, DateFormat) <= endDate,
+      );
     });
 };
