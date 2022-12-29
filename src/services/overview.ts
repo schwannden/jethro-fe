@@ -1,6 +1,7 @@
 import moment from 'moment';
-import { TitleMapping, DateFormat } from '@/utils/constant';
+import { TitleMapping } from '@/utils/constant';
 import type { ServiceGroup, ServantTitle } from '@/utils/constant';
+import { toMoment } from '@/utils/timeConvert';
 
 export const getServiceSummery = async (
   spreadSheetClient: gapi.client.sheets.SpreadsheetsResource,
@@ -8,8 +9,8 @@ export const getServiceSummery = async (
 ) => {
   return spreadSheetClient.values
     .get({
-      spreadsheetId: '1G3zqXsX6NwisgL3Al-cxQREsIFyYyFM1tEznClA0bug',
-      range: '2022總表!A:U',
+      spreadsheetId: '1Y2MsIX_hqzyqF2p6sTI6x4XTYNnb19E8ZGpjj_x92aw',
+      range: '2023總表!A:U',
     })
     .then((resp) => resp.result.values || [])
     .then((rows: any[][]) => rows.filter((row) => row.length > 1))
@@ -53,8 +54,10 @@ export const getServiceSummery = async (
       if (endDate.diff(startDate, 'd') < 7) {
         endDate.add(1, 'day').endOf('month');
       }
-      return validServices.filter(
-        (s) => moment(s.date, DateFormat) >= startDate && moment(s.date, DateFormat) <= endDate,
-      );
+      return validServices.filter((s) => {
+        const d = toMoment(s.date);
+        console.log(d);
+        return d >= startDate && d <= endDate;
+      });
     });
 };

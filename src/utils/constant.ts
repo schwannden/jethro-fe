@@ -25,7 +25,7 @@ export const ServiceNameKeys = ['friday-prayer', 'sunday-worship'] as const;
 export type ServiceNameKeyArray = typeof ServiceNameKeys;
 export type ServiceName = ServiceNameKeyArray[number];
 
-export const ServiceGroupKeys = ['general', 'teacher', 'jk', 'hospitality'] as const;
+export const ServiceGroupKeys = ['general', 'teacher', 'jk'] as const;
 export type ServiceGroupKeyArray = typeof ServiceGroupKeys;
 export type ServiceGroup = ServiceGroupKeyArray[number];
 
@@ -41,7 +41,7 @@ export const TitleMapping = {
   幼兒助理: 'teacher.pre-3.assist',
   愛筵: 'hospitality.cook',
   投影片: 'jk.ppt',
-  招待: 'hospitality.greeter',
+  招待: 'general.greeter',
   擘餅: 'general.sacrament',
   禱告會: 'general.prayer.lead',
   洗碗: 'hospitality.dishes',

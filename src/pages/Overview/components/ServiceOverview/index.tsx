@@ -18,7 +18,7 @@ const OverviewPage = () => {
   }, [syncServiceSummery]);
 
   const groupRWD = (group: ServiceGroup) =>
-    group === 'jk' ? { xl: 4, lg: 4, md: 2, sm: 2, xs: 2 } : { xl: 3, lg: 3, md: 2, sm: 2, xs: 2 };
+    group === 'jk' ? { xl: 6, lg: 6, md: 3, sm: 2, xs: 2 } : { xl: 4, lg: 4, md: 3, sm: 2, xs: 2 };
 
   const alerts = (service: API.ServiceSummary) => {
     const servantNames = service.servants
@@ -37,7 +37,7 @@ const OverviewPage = () => {
           </ProCard>
         </Col>
         {services.map((service: API.ServiceSummary) => (
-          <Col lg={12} md={24}>
+          <Col lg={24} md={24}>
             <ProCard
               key={`card-${service.name}`}
               title={formatMessage({ id: `service.name.${service.name}` })}
