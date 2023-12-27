@@ -9,8 +9,8 @@ export const getServiceSummery = async (
 ) => {
   return spreadSheetClient.values
     .get({
-      spreadsheetId: '1Y2MsIX_hqzyqF2p6sTI6x4XTYNnb19E8ZGpjj_x92aw',
-      range: '2023總表!A:U',
+      spreadsheetId: '1fo27VhYfFuacEBhXiA-HJG4IVTwban_fHzF_JaL65X8',
+      range: '2024總表!A:U',
     })
     .then((resp) => resp.result.values || [])
     .then((rows: any[][]) => rows.filter((row) => row.length > 1))
